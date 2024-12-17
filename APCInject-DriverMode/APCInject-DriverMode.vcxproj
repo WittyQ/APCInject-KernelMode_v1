@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{AD1E7740-6BF3-4C62-A8D6-4A7B1FC708E3}</ProjectGuid>
     <TemplateGuid>{1bc93793-694f-48fe-9372-81e2b05556fd}</TemplateGuid>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
     <Configuration>Debug</Configuration>
     <Platform Condition="'$(Platform)' == ''">x64</Platform>
@@ -35,9 +35,7 @@
     <PlatformToolset>WindowsKernelModeDriver10.0</PlatformToolset>
     <ConfigurationType>Driver</ConfigurationType>
     <DriverType>KMDF</DriverType>
-    <DriverTargetPlatform>
-    </DriverTargetPlatform>
-    <CharacterSet>Unicode</CharacterSet>
+    <DriverTargetPlatform>Universal</DriverTargetPlatform>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <TargetVersion>Windows10</TargetVersion>
@@ -45,9 +43,7 @@
     <PlatformToolset>WindowsKernelModeDriver10.0</PlatformToolset>
     <ConfigurationType>Driver</ConfigurationType>
     <DriverType>KMDF</DriverType>
-    <DriverTargetPlatform>
-    </DriverTargetPlatform>
-    <CharacterSet>Unicode</CharacterSet>
+    <DriverTargetPlatform>Universal</DriverTargetPlatform>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="Configuration">
     <TargetVersion>Windows10</TargetVersion>
@@ -55,9 +51,7 @@
     <PlatformToolset>WindowsKernelModeDriver10.0</PlatformToolset>
     <ConfigurationType>Driver</ConfigurationType>
     <DriverType>KMDF</DriverType>
-    <DriverTargetPlatform>
-    </DriverTargetPlatform>
-    <CharacterSet>Unicode</CharacterSet>
+    <DriverTargetPlatform>Universal</DriverTargetPlatform>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="Configuration">
     <TargetVersion>Windows10</TargetVersion>
@@ -65,9 +59,7 @@
     <PlatformToolset>WindowsKernelModeDriver10.0</PlatformToolset>
     <ConfigurationType>Driver</ConfigurationType>
     <DriverType>KMDF</DriverType>
-    <DriverTargetPlatform>
-    </DriverTargetPlatform>
-    <CharacterSet>Unicode</CharacterSet>
+    <DriverTargetPlatform>Universal</DriverTargetPlatform>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -79,78 +71,51 @@
   <PropertyGroup />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <DebuggerFlavor>DbgengKernelDebugger</DebuggerFlavor>
-    <Inf2CatWindowsVersionList>7_$(DDKPlatform)</Inf2CatWindowsVersionList>
-    <ExecutablePath>$(ExecutablePath);$(WDKBinRoot_x86);$(ExecutablePath);$(WDKBinRoot_x86);$(WDKContentRoot)tools\$(WDKBuildFolder)\tracing\x64</ExecutablePath>
-    <TargetName>$(TargetName.Replace(' ',''))_$(Platform)</TargetName>
+    <TargetName>$(TargetName.Replace(' ',''))</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <DebuggerFlavor>DbgengKernelDebugger</DebuggerFlavor>
-    <Inf2CatWindowsVersionList>7_$(DDKPlatform)</Inf2CatWindowsVersionList>
-    <ExecutablePath>$(ExecutablePath);$(WDKBinRoot_x86);$(ExecutablePath);$(WDKBinRoot_x86);$(WDKContentRoot)tools\$(WDKBuildFolder)\tracing\x64</ExecutablePath>
-    <TargetName>$(TargetName.Replace(' ',''))_$(Platform)</TargetName>
+    <TargetName>$(TargetName.Replace(' ',''))</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <DebuggerFlavor>DbgengKernelDebugger</DebuggerFlavor>
-    <Inf2CatWindowsVersionList>7_$(DDKPlatform)</Inf2CatWindowsVersionList>
-    <ExecutablePath>$(ExecutablePath);$(WDKBinRoot_x86);$(VC_ExecutablePath_ARM64);$(CommonExecutablePath)</ExecutablePath>
-    <TargetName>$(TargetName.Replace(' ',''))_$(Platform)</TargetName>
+    <TargetName>$(TargetName.Replace(' ',''))</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
     <DebuggerFlavor>DbgengKernelDebugger</DebuggerFlavor>
-    <Inf2CatWindowsVersionList>7_$(DDKPlatform)</Inf2CatWindowsVersionList>
-    <ExecutablePath>$(ExecutablePath);$(WDKBinRoot_x86);$(VC_ExecutablePath_ARM64);$(CommonExecutablePath)</ExecutablePath>
-    <TargetName>$(TargetName.Replace(' ',''))_$(Platform)</TargetName>
+    <TargetName>$(TargetName.Replace(' ',''))</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <DriverSign>
-      <FileDigestAlgorithm>SHA256</FileDigestAlgorithm>
+      <FileDigestAlgorithm>sha256</FileDigestAlgorithm>
     </DriverSign>
     <ClCompile>
       <TreatWarningAsError>false</TreatWarningAsError>
-      <WarningLevel>Level3</WarningLevel>
     </ClCompile>
-    <Link>
-      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <DriverSign>
-      <FileDigestAlgorithm>
-      </FileDigestAlgorithm>
+      <FileDigestAlgorithm>sha256</FileDigestAlgorithm>
     </DriverSign>
     <ClCompile>
       <TreatWarningAsError>false</TreatWarningAsError>
-      <WarningLevel>Level3</WarningLevel>
     </ClCompile>
-    <Link>
-      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
     <DriverSign>
-      <FileDigestAlgorithm>
-      </FileDigestAlgorithm>
+      <FileDigestAlgorithm>sha256</FileDigestAlgorithm>
     </DriverSign>
     <ClCompile>
       <TreatWarningAsError>false</TreatWarningAsError>
-      <WarningLevel>Level3</WarningLevel>
     </ClCompile>
-    <Link>
-      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <DriverSign>
-      <FileDigestAlgorithm>
-      </FileDigestAlgorithm>
+      <FileDigestAlgorithm>sha256</FileDigestAlgorithm>
     </DriverSign>
     <ClCompile>
       <TreatWarningAsError>false</TreatWarningAsError>
-      <WarningLevel>Level3</WarningLevel>
     </ClCompile>
-    <Link>
-      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-    </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <Inf Include="APCInject-DriverMode.inf" />

@@ -1,10 +1,9 @@
 Inf2Cat Tool Output:
-........................
+..........................
 Signability test failed.
 
 Errors:
-22.9.10: %drivername_x86%.sys in [apcinject-drivermode.driverfiles.x86] is missing from [SourceDisksFiles] section in APCInject-DriverMode\apcinject-drivermode.inf; driver may not sign correctly until this is resolved.
-22.9.10: %drivername_x64%.sys in [apcinject-drivermode.driverfiles.x64] is missing from [SourceDisksFiles] section in APCInject-DriverMode\apcinject-drivermode.inf; driver may not sign correctly until this is resolved.
+22.9.1: %drivername_x64%.sys in [apcinject-drivermode.driverfiles.x64] of APCInject-DriverMode\apcinject-drivermode.inf is missing or cannot be decompressed from source media.  Please verify all path values specified in SourceDisksNames, SouceDisksFiles, and CopyFiles sections resolve to the actual location of the file, and are expressed in terms relative to the location of the inf.
 
 Warnings:
 None
