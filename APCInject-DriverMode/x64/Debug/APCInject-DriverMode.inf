@@ -10,7 +10,7 @@ Provider    = %ManufacturerName%
 DriverPackageType=KernelService
 CatalogFile = APCInject-DriverMode.cat
 PnpLockdown=1
-DriverVer = 12/17/2024,13.49.58.953
+DriverVer = 12/17/2024,18.8.27.452
 
 [DestinationDirs]
 DefaultDestDir = 12

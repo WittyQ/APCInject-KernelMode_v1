@@ -370,7 +370,7 @@ InjLoadImageNotifyRoutine(
 	//
 	// Check it is target process
 	//
-	UNICODE_STRING target = RTL_CONSTANT_STRING(L"C:\\Users\\13984\\Desktop\\TargetProcess.exe");
+	UNICODE_STRING target = RTL_CONSTANT_STRING(L"C:\\Users\\test\\Desktop\\TargetProcess.exe");
 
 	if (FullImageName == NULL || !RtlEqualUnicodeString(FullImageName, &target, TRUE)) {
 		return;
@@ -411,7 +411,7 @@ NTSTATUS InitializeInjectDllInfo() {
 	DllPathX64.Buffer = DllPathX64Buffer;
 
 	// copy data
-	wcscpy(DllPathX64.Buffer, L"C:\\Users\\13984\\Desktop\\TestDll.dll");
+	wcscpy(DllPathX64.Buffer, L"C:\\Users\\test\\Desktop\\TestDll.dll");
 
 	// update length
 	DllPathX64.Length = wcslen(DllPathX64.Buffer) * sizeof(WCHAR);
@@ -443,6 +443,7 @@ DriverDestroy(
 	_In_ PDRIVER_OBJECT DriverObject
 )
 {
+	DbgPrint(L"Wade start DriverDestroy");
 	UNREFERENCED_PARAMETER(DriverObject);
 
 	PsRemoveLoadImageNotifyRoutine(&InjLoadImageNotifyRoutine);
@@ -464,13 +465,14 @@ DriverEntry(
 	_In_ PUNICODE_STRING RegistryPath
 )
 {
+	DbgPrint(L"Wade into DriverEntry");
 	NTSTATUS Status = STATUS_SUCCESS;
-	DriverObject->DriverUnload = &DriverDestroy;
 
 	//Initialize inject dll info
 	Status = InitializeInjectDllInfo();
 	if (!NT_SUCCESS(Status))
 	{
+		DbgPrint(L"Wade Initialize Dll Info failed");
 		return Status;
 	}
 
@@ -480,8 +482,11 @@ DriverEntry(
 	Status = PsSetLoadImageNotifyRoutine(&InjLoadImageNotifyRoutine);
 	if (!NT_SUCCESS(Status))
 	{
+		DbgPrint(L"Wade PsSetLoadImageNotifyRoutine failed");
 		return Status;
 	}
-
+	DbgPrint(L"Wade start DriverDestroy for Driverunload");
+	DriverObject->DriverUnload = &DriverDestroy;
+	DbgPrint(L"Wade success finish DriverEntry");
 	return STATUS_SUCCESS;
 }
